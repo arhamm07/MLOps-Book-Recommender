@@ -115,4 +115,7 @@ if __name__ == "__main__":
     
     #recommendation
     if st.button('Show Recommendation'):
-        obj.recommendations_engine(selected_books)
+        if not os.path.exists(obj.recommendation_config.trained_model_path):
+            st.warning("Model not found! Please train the model first by clicking 'Train Recommender System'")
+        else:
+            obj.recommendations_engine(selected_books)
